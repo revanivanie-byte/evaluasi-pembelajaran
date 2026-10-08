@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PELITA – Platform Evaluasi Pembelajaran Akuntansi</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f6f4ee;--card:#fff;--ink:#1f2a37;--mut:#6b7280;--line:#e5e1d6;--pri:#0f5c4d;--pri2:#e3f1ec;--acc:#e8a317;
+--r:#e5484d;--y:#f5b82e;--g:#2e9e6b;--rbg:#fde8e8;--ybg:#fff4d6;--gbg:#dff3e8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14181c;--card:#1d2328;--ink:#e8ecef;--mut:#9aa5ad;--line:#2d353b;--pri:#4cc2a5;--pri2:#1f3a34;--rbg:#4a2326;--ybg:#4a3b17;--gbg:#183b2b}}
+:root[data-theme="dark"]{--bg:#14181c;--card:#1d2328;--ink:#e8ecef;--mut:#9aa5ad;--line:#2d353b;--pri:#4cc2a5;--pri2:#1f3a34;--rbg:#4a2326;--ybg:#4a3b17;--gbg:#183b2b}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:15px;line-height:1.5}
+header{display:flex;align-items:center;gap:12px;padding:10px 20px;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:5;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:8px;font-weight:800;letter-spacing:.12em;color:var(--pri);font-size:20px}
+.title{font-weight:700;font-size:13px;letter-spacing:.1em;color:var(--mut);padding-left:12px;border-left:2px solid var(--acc)}
+.sw{margin-left:auto;display:flex;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:3px}
+.sw button{border:0;background:none;padding:6px 14px;border-radius:8px;cursor:pointer;color:var(--mut);font:inherit;font-weight:600}
+.sw button.on{background:var(--pri);color:#fff}
+.wrap{display:flex;min-height:calc(100vh - 56px)}
+nav{width:220px;flex:none;padding:16px 12px;border-right:1px solid var(--line);background:var(--card)}
+nav button{display:flex;width:100%;gap:10px;align-items:center;text-align:left;border:0;background:none;padding:10px 12px;border-radius:10px;cursor:pointer;color:var(--ink);font:inherit;margin-bottom:2px}
+nav button:hover{background:var(--pri2)}
+nav button.on{background:var(--pri);color:#fff;font-weight:600}
+main{flex:1;padding:22px;min-width:0;max-width:1100px}
+h2{margin:0 0 4px;font-size:22px}h3{margin:0 0 12px;font-size:16px}
+.sub{color:var(--mut);margin:0 0 18px}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
+.grid .card{margin:0}
+.big{font-size:30px;font-weight:800;color:var(--pri)}
+.lbl{color:var(--mut);font-size:13px}
+.btn{background:var(--pri);color:#fff;border:0;border-radius:10px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer}
+.btn.alt{background:var(--pri2);color:var(--pri)}
+.btn.warn{background:var(--acc);color:#2b1d00}
+.btn:hover{filter:brightness(1.08)}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{color:var(--mut);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+.hm td.c{text-align:center;font-weight:700;border-radius:8px;border:3px solid var(--card)}
+.r{background:var(--rbg);color:var(--r)}.y{background:var(--ybg);color:#a67600}.g{background:var(--gbg);color:var(--g)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .y{color:var(--y)}}
+.leg{display:flex;gap:14px;font-size:12px;color:var(--mut);margin-top:10px;flex-wrap:wrap}
+.leg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px}
+.bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden;min-width:90px}
+.bar b{display:block;height:100%;background:var(--pri)}
+input,select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
+label{display:block;font-size:13px;font-weight:600;margin:12px 0 4px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:400;margin:8px 0}.chk input{width:auto}
+.badge{padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700}
+.stat{padding:10px 16px;border-radius:10px;font-weight:800;letter-spacing:.06em;display:inline-block}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.jr td{padding:4px}.jr input,.jr select{padding:6px 8px}
+#toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:10px;opacity:0;transition:.3s;pointer-events:none;z-index:9}
+#toast.on{opacity:1}
+.hint{background:var(--ybg);border-left:4px solid var(--acc);padding:10px 14px;border-radius:8px;margin-top:12px}
+@media (max-width:760px){.wrap{flex-direction:column}nav{width:100%;display:flex;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:8px}nav button{white-space:nowrap;width:auto}main{padding:14px}.title{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#0f5c4d"/><path d="M16 5c3 4 5 6 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-4 0-6 1-9z" fill="#e8a317"/><rect x="11" y="22" width="10" height="3" rx="1.5" fill="#fff"/></svg>PELITA</div>
+  <div class="title" id="ttl"></div>
+  <div class="sw"><button id="bg" onclick="setRole('guru')">Guru</button><button id="bs" onclick="setRole('siswa')">Siswa</button></div>
+</header>
+<div class="wrap"><nav id="nav"></nav><main id="main"></main></div>
+<div id="toast"></div>
+<script>
+const $=s=>document.querySelector(s),fmt=n=>'Rp'+Number(n||0).toLocaleString('id-ID');
+const MENU={guru:[['🏠','Beranda Guru'],['📊','Analisis Kelas'],['🗂️','Bank Soal'],['✍️','Buat Evaluasi'],['📚','Modul Pembelajaran'],['🧾','Rekap Nilai'],['⚙️','Pengaturan']],
+siswa:[['🏠','Beranda Siswa'],['📖','Modul Belajar'],['🧮','Latihan & Kuis'],['📝','Evaluasi Praktikum'],['📈','Laporan Kemajuan'],['🎓','Sertifikat'],['💬','Forum Diskusi']]};
+const TOPIK=['Jurnal Umum','Buku Besar','Neraca Saldo','Jurnal Penyesuaian','Laporan Keuangan','HPP'];
+const KLS=['XI AKL 1','XI AKL 2','XI AKL 3'];
+const HM=[[88,82,91],[76,81,72],[69,74,66],[58,52,63],[47,55,42],[64,71,59]];
+let SISWA=[['Aulia Rahma',92,88],['Bagas Prakoso',85,81],['Citra Lestari',78,76],['Dimas Aryo',64,58],['Eka Putri',95,90],['Fajar Nugroho',52,47],['Gita Maharani',71,69],['Hendra Wijaya',88,84]];
+let EVAL=[['Praktikum Jurnal Umum – Perusahaan Jasa','Selesai'],['Kuis Buku Besar','Selesai']];
+const st={role:'guru',page:0,rows:[{a:'',d:'',k:''},{a:'',d:'',k:''},{a:'',d:'',k:''}],hint:0};
+const AKUN=['Kas','Perlengkapan','Peralatan','Piutang Usaha','Utang Usaha','Modal','Pendapatan Jasa','Beban Gaji'];
+const SOAL={t:'Tgl 3 Agustus: Perusahaan membeli perlengkapan kantor seharga Rp2.500.000. Rp1.000.000 dibayar tunai, sisanya belum dibayar (kredit).',
+ kunci:[['Perlengkapan',2500000,0],['Kas',0,1000000],['Utang Usaha',0,1500000]],
+ hints:['Petunjuk 1: Perlengkapan adalah aset. Saat aset bertambah, akun dicatat di sisi debit.','Petunjuk 2: Pembayaran tunai mengurangi Kas (aset) sehingga Kas dicatat di sisi kredit.','Petunjuk 3: Sisa Rp1.500.000 yang belum dibayar menjadi Utang Usaha di sisi kredit. Total debit harus sama dengan total kredit.']};
+const cls=v=>v>=80?'g':v>=60?'y':'r';
+function toast(m){const t=$('#toast');t.textContent=m;t.className='on';setTimeout(()=>t.className='',2200)}
+function setRole(r){st.role=r;st.page=0;draw()}
+function go(i){st.page=i;draw()}
+function heat(){return `<div class="card"><h3>Topic Mastery Heatmap</h3><div class="scroll"><table class="hm"><tr><th>Topik</th>${KLS.map(k=>`<th style="text-align:center">${k}</th>`).join('')}<th>Rata-rata</th></tr>
+${TOPIK.map((t,i)=>{const a=Math.round(HM[i].reduce((x,y)=>x+y)/3);return `<tr><td>${t}</td>${HM[i].map(v=>`<td class="c ${cls(v)}">${v}%</td>`).join('')}<td><span class="badge ${cls(a)}">${a>=80?'Menguasai':a>=60?'Menengah':'Perlu remediasi'}</span></td></tr>`}).join('')}</table></div>
+<div class="leg"><span><i style="background:var(--r)"></i>Merah &lt;60% (perlu remediasi)</span><span><i style="background:var(--y)"></i>Kuning 60–79% (menengah)</span><span><i style="background:var(--g)"></i>Hijau ≥80% (menguasai)</span></div></div>`}
+function metrics(){const avg=(SISWA.reduce((s,x)=>s+x[2],0)/SISWA.length).toFixed(1);
+return `<div class="grid g3" style="margin-bottom:14px"><div class="card"><div class="lbl">Siswa Aktif</div><div class="big">${SISWA.length*4}</div><div class="lbl">dari 3 kelas</div></div>
+<div class="card"><div class="lbl">Rata-rata Nilai Kelas</div><div class="big">${avg}</div><div class="lbl">skala 0–100</div></div>
+<div class="card"><div class="lbl">Evaluasi Praktikum Selesai</div><div class="big">${EVAL.filter(e=>e[1]=='Selesai').length+10}/${EVAL.length+13}</div><div class="lbl">semester ini</div></div></div>`}
+function ctrl(){return `<div class="card row"><div><h3 style="margin:0">Panel Kontrol Evaluasi</h3><div class="lbl">Buat ujian dan latihan praktikum dengan soal acak dan toleransi kesalahan.</div></div><button class="btn warn" onclick="go(3)">+ Buat Evaluasi Praktikum Baru</button></div>`}
+function siswaTbl(){return `<div class="card"><div class="row"><h3>Detail Siswa</h3><input id="q" placeholder="Cari siswa…" style="max-width:220px" oninput="filt()"></div><div class="scroll"><table id="tb"></table></div></div>`}
+function filt(){const q=($('#q')?.value||'').toLowerCase();$('#tb').innerHTML=`<tr><th>Nama</th><th>Progres Belajar</th><th>Nilai</th><th>Status</th></tr>`+SISWA.filter(s=>s[0].toLowerCase().includes(q)).map(s=>`<tr><td>${s[0]}</td><td><div class="bar"><b style="width:${s[1]}%"></b></div> <span class="lbl">${s[1]}%</span></td><td><b>${s[2]}</b></td><td><span class="badge ${cls(s[2])}">${s[2]>=80?'Baik':s[2]>=60?'Cukup':'Remediasi'}</span></td></tr>`).join('')}
+function formEval(){return `<div class="card"><h2>Buat Evaluasi Praktikum</h2><p class="sub">Atur soal acak dan toleransi kesalahan sebelum dibagikan ke siswa.</p>
+<label>Judul evaluasi</label><input id="e1" value="Praktikum Jurnal Umum – Perusahaan Dagang">
+<div class="grid g2"><div><label>Topik</label><select id="e2">${TOPIK.map(t=>`<option>${t}</option>`).join('')}</select></div><div><label>Kelas</label><select>${KLS.map(t=>`<option>${t}</option>`).join('')}</select></div>
+<div><label>Jumlah transaksi</label><input type="number" id="e3" value="10" min="1"></div><div><label>Durasi (menit)</label><input type="number" value="60" min="5"></div>
+<div><label>Toleransi selisih nominal (Rp)</label><input type="number" id="e4" value="0" min="0"></div><div><label>Batas percobaan</label><input type="number" value="2" min="1"></div></div>
+<label class="chk"><input type="checkbox" checked> Acak urutan soal tiap siswa</label>
+<label class="chk"><input type="checkbox" checked> Acak nominal transaksi (variasi angka)</label>
+<label class="chk"><input type="checkbox"> Beri nilai sebagian untuk akun yang benar</label>
+<label class="chk"><input type="checkbox" checked> Izinkan penggunaan petunjuk (pengurang nilai 5%)</label>
+<div style="margin-top:14px"><button class="btn" onclick="saveEval()">Simpan &amp; Jadwalkan</button></div></div>
+<div class="card"><h3>Daftar Evaluasi</h3><table>${EVAL.map(e=>`<tr><td>${e[0]}</td><td><span class="badge ${e[1]=='Selesai'?'g':'y'}">${e[1]}</span></td></tr>`).join('')}</table></div>`}
+function saveEval(){EVAL.unshift([$('#e1').value||'Evaluasi baru','Terjadwal']);toast('Evaluasi berhasil disimpan dan dijadwalkan');draw()}
+function ring(p,l){const c=2*Math.PI*42;return `<div style="text-align:center"><svg width="110" height="110" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="var(--line)" stroke-width="10"/><circle cx="50" cy="50" r="42" fill="none" stroke="var(--pri)" stroke-width="10" stroke-linecap="round" stroke-dasharray="${c*p/100} ${c}" transform="rotate(-90 50 50)"/><text x="50" y="56" text-anchor="middle" font-size="20" font-weight="800" fill="var(--ink)">${p}%</text></svg><div class="lbl">${l}</div></div>`}
+function berandaSiswa(){return `<h2>Halo, Aulia! 👋</h2><p class="sub">Ayo lanjutkan belajar akuntansimu hari ini.</p>
+<div class="card"><h3>Progres Belajar Utama</h3><div class="row" style="justify-content:space-around">${ring(68,'Penyelesaian modul')}${ring(54,'Evaluasi praktikum')}${ring(76,'Rata-rata latihan')}</div></div>
+<h3>Modul Belajar Aktif</h3><div class="grid g3" style="margin-bottom:14px">
+${[['Jurnal Penyesuaian',60],['Neraca Lajur',35],['Laporan Keuangan',80]].map(m=>`<div class="card"><b>${m[0]}</b><div class="bar" style="margin:10px 0"><b style="width:${m[1]}%"></b></div><div class="lbl">${m[1]}% selesai</div><div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap"><button class="btn alt" onclick="toast('Membuka materi PDF…')">📄 PDF</button><button class="btn alt" onclick="toast('Memutar video…')">▶ Video</button><button class="btn alt" onclick="go(2)">✏ Latihan</button></div></div>`).join('')}</div>
+<div class="card"><h3>Evaluasi Aktif</h3><table><tr><td>Ujian Praktikum Jurnal Penyesuaian</td><td class="lbl">Jumat, 10 Okt • 60 menit</td><td><button class="btn" onclick="toast('Evaluasi dibuka pada waktu terjadwal')">Mulai</button></td></tr>
+<tr><td>Kuis Neraca Saldo</td><td class="lbl">Senin, 13 Okt • 20 menit</td><td><span class="badge y">Terjadwal</span></td></tr></table></div>`}
+function latihan(){return `<h2>Latihan Interaktif: Jurnal Umum</h2><p class="sub">Catat transaksi berikut ke dalam jurnal umum.</p>
+<div class="card"><b>Transaksi:</b><p style="margin:6px 0 0">${SOAL.t}</p></div>
+<div class="card"><div class="scroll"><table class="jr"><tr><th>Akun</th><th>Debit (Rp)</th><th>Kredit (Rp)</th></tr><tbody id="jb"></tbody></table></div>
+<div class="row" style="margin-top:12px"><div><button class="btn alt" onclick="st.rows.push({a:'',d:'',k:''});rows()">+ Baris</button> <button class="btn alt" onclick="hint()">💡 PETUNJUK (HINT)</button></div><span id="bal"></span></div>
+<div id="hn"></div><div style="margin-top:14px"><button class="btn" onclick="cek()">Periksa Jawaban</button> <button class="btn alt" onclick="st.rows=[{a:'',d:'',k:''},{a:'',d:'',k:''},{a:'',d:'',k:''}];st.hint=0;draw()">Ulangi</button></div><div id="fb"></div></div>`}
+function rows(){$('#jb').innerHTML=st.rows.map((r,i)=>`<tr><td><select onchange="st.rows[${i}].a=this.value;bal()"><option value="">— pilih akun —</option>${AKUN.map(a=>`<option${r.a==a?' selected':''}>${a}</option>`).join('')}</select></td><td><input type="number" min="0" value="${r.d}" oninput="st.rows[${i}].d=this.value;bal()"></td><td><input type="number" min="0" value="${r.k}" oninput="st.rows[${i}].k=this.value;bal()"></td></tr>`).join('');bal()}
+function bal(){const d=st.rows.reduce((s,r)=>s+(+r.d||0),0),k=st.rows.reduce((s,r)=>s+(+r.k||0),0),ok=d==k&&d>0;
+$('#bal').innerHTML=`<span class="lbl">Debit ${fmt(d)} • Kredit ${fmt(k)}</span> &nbsp;<span class="stat ${ok?'g':'r'}">${ok?'✔ STATUS SEIMBANG':'✖ TIDAK SEIMBANG'+(d||k?' (selisih '+fmt(Math.abs(d-k))+')':'')}</span>`}
+function hint(){const h=SOAL.hints[Math.min(st.hint,2)];st.hint++;$('#hn').innerHTML=`<div class="hint">💡 ${h}</div>`}
+function cek(){let n=0;SOAL.kunci.forEach(k=>{if(st.rows.some(r=>r.a==k[0]&&(+r.d||0)==k[1]&&(+r.k||0)==k[2]))n++});
+const sc=Math.round(n/SOAL.kunci.length*100);$('#fb').innerHTML=`<div class="hint" style="background:var(--${sc==100?'gbg':'ybg'})">${sc==100?'🎉 Benar semua! Jurnal sudah tepat.':`Baru ${n} dari ${SOAL.kunci.length} baris yang tepat. Periksa posisi debit/kredit dan nominalnya.`} Skor: <b>${sc}</b></div>`}
+function evalSiswa(){return `<h2>Evaluasi Praktikum</h2><p class="sub">Ujian dan kuis yang dijadwalkan oleh gurumu.</p><div class="card"><table><tr><th>Evaluasi</th><th>Jadwal</th><th>Status</th></tr>
+<tr><td>Ujian Praktikum Jurnal Penyesuaian</td><td>10 Okt, 60 menit</td><td><span class="badge y">Segera</span></td></tr><tr><td>Kuis Neraca Saldo</td><td>13 Okt, 20 menit</td><td><span class="badge y">Terjadwal</span></td></tr><tr><td>Kuis Buku Besar</td><td>1 Okt</td><td><span class="badge g">Nilai 88</span></td></tr></table></div>`}
+function soon(n){return `<div class="card" style="text-align:center;padding:50px 20px"><div style="font-size:40px">🚧</div><h2>${n}</h2><p class="sub">Halaman ini disiapkan sebagai tahap pengembangan berikutnya.</p></div>`}
+function draw(){const r=st.role,m=MENU[r];
+$('#bg').className=r=='guru'?'on':'';$('#bs').className=r=='siswa'?'on':'';
+$('#ttl').textContent=r=='guru'?'DASHBOARD PENGAJAR':'DASHBOARD SISWA';
+$('#nav').innerHTML=m.map((x,i)=>`<button class="${i==st.page?'on':''}" onclick="go(${i})"><span>${x[0]}</span>${x[1]}</button>`).join('');
+const n=m[st.page][1];let h='';
+if(r=='guru'){
+ if(st.page==0)h=`<h2>Selamat datang, Bu Guru 👩‍🏫</h2><p class="sub">Ringkasan kelas Akuntansi dan Keuangan Lembaga hari ini.</p>${metrics()}${ctrl()}${heat()}${siswaTbl()}`;
+ else if(st.page==1)h=`<h2>Analisis Kelas</h2><p class="sub">Pahami topik mana yang butuh remediasi.</p>${heat()}<div class="card"><h3>Rekomendasi</h3><p>Topik <b>Laporan Keuangan</b> dan <b>Jurnal Penyesuaian</b> berwarna merah. Disarankan sesi remediasi dan latihan tambahan.</p></div>`;
+ else if(st.page==3)h=formEval();
+ else if(st.page==5)h=`<h2>Rekap Nilai</h2><p class="sub">Nilai dan progres seluruh siswa.</p>${siswaTbl()}`;
+ else h=soon(n);
+}else{
+ if(st.page==0)h=berandaSiswa();else if(st.page==2)h=latihan();else if(st.page==3)h=evalSiswa();else h=soon(n);
+}
+$('#main').innerHTML=h;
+if($('#tb'))filt();if($('#jb'))rows();window.scrollTo(0,0)}
+draw();
+</script>
+</body>
+</html>
